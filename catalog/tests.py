@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 
 
 class StaticURLTest(TestCase):
@@ -29,4 +29,3 @@ class StaticURLTest(TestCase):
     def test_catalog_converter_no_int_endpoint(self):
         response = Client().get("/catalog/converter/f2")
         self.assertEqual(response.status_code, 404)
-
