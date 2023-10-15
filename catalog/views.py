@@ -6,7 +6,7 @@ def item_list(request):
 
 
 def item_detail(request, id_elem):
-    return HttpResponse(f'<body>Подробно элемент<body/>')
+    return HttpResponse('<body>Подробно элемент<body/>')
 
 
 def number(request, n):
