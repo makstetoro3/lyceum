@@ -17,20 +17,19 @@ import dotenv
 
 dotenv.load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "not_so_secret")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG_ENV = os.getenv("DJANGO_DEBUG", "true").lower()
+
 DEBUG = DEBUG_ENV in ("true", "yes", "l", "y", "t")
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
+
+ALLOW_REVERSE_ENV = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower()
+
+ALLOW_REVERSE = ALLOW_REVERSE_ENV in ("true", "yes", "l", "y", "t")
 
 # Application definition
 
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar"
 ]
 
 MIDDLEWARE = [
@@ -54,6 +54,14 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
+
+# if ALLOW_REVERSE:
+#     MIDDLEWARE += ("lyceum.middleware.MultipleProxyMiddleware",)
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 ROOT_URLCONF = "lyceum.urls"
