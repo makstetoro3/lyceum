@@ -1,4 +1,4 @@
-from lyceum.catalog import converters
+from catalog import converters
 from django.urls import path, re_path, register_converter
 from . import views
 
