@@ -18,14 +18,14 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-import about.urls
-import catalog.urls
-import homepage.urls
+from lyceum_ import about
+import lyceum_.catalog.urls
+import lyceum_.homepage.urls
 
 urlpatterns = [
-    path("", include(homepage.urls)),
-    path("catalog/", include(catalog.urls)),
-    path("about/", include(about.urls)),
+    path("", include(lyceum_.homepage.urls)),
+    path("catalog/", include(lyceum_.catalog.urls)),
+    path("about/", include(lyceum_.about.urls)),
     path("admin/", admin.site.urls),
 ]
 
