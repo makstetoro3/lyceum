@@ -18,7 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-from lyceum import about
+import lyceum.about.urls
 import lyceum.catalog.urls
 import lyceum.homepage.urls
 
